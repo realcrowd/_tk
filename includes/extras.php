@@ -68,3 +68,16 @@ function _tk_wp_title( $title, $sep ) {
 	return $title;
 }
 add_filter( 'wp_title', '_tk_wp_title', 10, 2 );
+
+/**
+ * Filters post_image_html to add a wrapper we can optionally 
+ * use to crop the image via styles.
+ */
+function _tk_post_image_html( $html, $post_id, $post_image_id ) {
+
+	$img_container_begin = '<div class="_tk-post-image-container">';
+	$img_container_end = '</div>';
+
+	return $img_container_begin . $html . $img_container_end;
+}
+add_filter( 'post_thumbnail_html', '_tk_post_image_html', 10, 3 );
